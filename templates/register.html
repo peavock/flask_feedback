@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="display-4">Sign Up</h1>
+<p class="lead">Register for our site. Already have an account? <a href="/login">Log In!</a></p>
+
+<form method="POST">
+
+  {{ form.hidden_tag() }}
+
+  {% for field in form 
+    if field.widget.input_type != 'hidden' %}
+  <p>
+    {{ field.label }}
+    {{ field }}
+
+    {% for error in field.errors %}
+    <p class="form-text text-danger font-italic">
+      {{error}}
+    </p>
+    {% endfor %}
+  </p>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-info">Register</button>
+
+</form>
+{% endblock %}
